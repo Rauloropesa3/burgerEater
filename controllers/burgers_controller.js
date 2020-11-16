@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
 
@@ -6,18 +6,18 @@ const router = express.Router();
 const burger = require("../models/burger,js");
 
 // Route
-router.get("/", function(req,res){
-    burger.selectAll(funtion(data){
-        const burgr = {
-        burgers:Data 
+router.get("/", function(req, res){
+    burger.selectAll(function(data){
+        const burg = {
+        burgers: data 
     };
-    console.log(burgr);
-    res.render("index", burgr);
+    console.log(burg);
+    res.render("index", burg);
   });
 });
 
 //Route
-router.post("/api/burgers", function(req res){
+router.post("/api/burgers", function(req, res){
     console.log(req.body)
     burger.insertOne(["burger_name"], [req.body.name], function (result){
         res.json({id: result.insertId});
@@ -25,14 +25,14 @@ router.post("/api/burgers", function(req res){
 });
 
 // Route
-router.put("/api/burgers/:id", function(req,, res){
+router.put("/api/burgers", function(req, res){
     var condition = "id = " + req.params.id;
     console.log("condition", condition);
 
-    const burgrObject = {
+    const burgObject = {
         devoured: req.body.devoured
     }
-    burger.updateOne(burgrObject, condition, function(result){
+    burger.updateOne(burgObject, condition, function(result){
         console.log(result)
         if(result.changeRows == 0){
             return res.status(404).end();
@@ -41,4 +41,5 @@ router.put("/api/burgers/:id", function(req,, res){
         }
     });
 });
+
 module.exports =router
