@@ -20,6 +20,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
+    "heroku": "^7.47.2",
     "mysql": "^2.18.1",
     "pkg": "^4.4.9"
   }
