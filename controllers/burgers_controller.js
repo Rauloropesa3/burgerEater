@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 //Model import
-const burger = require("../models/burger,js");
+const burger = require("../models/burger.js");
 
 // Route
 router.get("/", function(req, res){
@@ -42,4 +42,4 @@ router.put("/api/burgers", function(req, res){
     });
 });
 
-module.exports =router
+module.exports = router

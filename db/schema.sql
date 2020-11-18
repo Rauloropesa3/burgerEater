@@ -1,4 +1,4 @@
-CREATE DATABASE burgers_db;
+CREATE DATABASE wyz6xr1ilvrqvnsb;
 
 CREATE TABLE burgers(
     id INT NOT NULL AUTO_INCREMENT,
@@ -7,4 +7,4 @@ CREATE TABLE burgers(
     primaary key("id")
 )
 
-SELECT = from burgers;
+SELECT * from burgers;
