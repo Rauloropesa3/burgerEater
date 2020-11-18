@@ -1,5 +1,5 @@
 // imported connection
-const connection = require('../config/connections.js');
+const connection = require('./connection.js');
 
 function printQuestionMarks(num){
     let arr =[];
@@ -22,38 +22,40 @@ function objToSql(object){
     return arr.toString();
  }
  const orm = {
-    selectAll: function (tableInput, cb) {
-        var query = "SELECT * FROM " + tableInput + ";";
-        connection.query(query, function(err, res) {
+    all: function (tableInput, cb) {
+        var queryString = "SELECT * FROM " + tableInput + ";";
+        connection.query(queryString, function(err, res) {
             if (err) throw err;
             cb(res);
         });
     },
-    insertOne: function (table, cols, vals, cb) {
-        var query = "INSERT INTO " + table;
-        query += " (";
-        query += cols.toString();
-        query += ") ";
-        query += "VALUES (";
-        query += printQuestionMarks(vals.length);
-        query += ") ";
+    create: function (table, cols, vals, cb) {
+        var queryString = "INSERT INTO " + table;
+        
+        queryString += " (";
+        queryString += cols.toString();
+        queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
 
-        console.log(query);
+        console.log(queryString);
 
-        connection.query(query, vals, function (err, res) {
+        connection.query(queryString, vals, function (err, res) {
             if (err) throw err;
             cb(res);
         });
     },
-    updateOne: function (table, objColVals, condition, cb) {
-        var query = "UPDATE " + table;
-        query += " SET ";
-        query += objToSql(objColVals);
-        query += " WHERE ";
-        query += condition;
+    update: function (table, objColVals, condition, cb) {
+        var queryString = "UPDATE " + table;
 
-        console.log(query);
-        connection.query(query, function (err, res) {
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
+
+        console.log(queryString);
+        connection.query(queryString, function (err, res) {
             if (err) throw err;
             cb(res);
         });

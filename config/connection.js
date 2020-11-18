@@ -21,6 +21,7 @@ if(process.env.JAWSDB_URL){
         
         // database
         database: process.env.DB_DATABASE,
+        
     });
 }
 // connection
