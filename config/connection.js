@@ -1,7 +1,7 @@
 // configuration connection
 require("dotenv").config();
 // requiring my db
-let mysql =require("mysql");
+let mysql =require("mysql2");
 
 //JAWS DB set up
 let connection;
