@@ -1,28 +1,12 @@
 // configuration connection
-require("dotenv").config();
+//require("dotenv").config();
 // requiring my db
 let mysql = require("mysql2");
 
 //JAWS DB set up
 let connection;
+connection = mysql.createConnection(process.env.JAWSDB_URL);
 
-if (process.env.JAWSDB_URL) {
-  connection = mysql.createConnection(process.env.JAWSDB_URL);
-} else {
-  connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-
-    //userName
-    user: process.env.DB_USERNAME,
-
-    // password
-    user: process.env.DB_PASSWORD,
-
-    // database
-    database: process.env.DB_DATABASE,
-  });
-}
 // connection
 connection.connect((err) => {
   if (err) {
