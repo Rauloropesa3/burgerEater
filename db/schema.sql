@@ -1,11 +1,7 @@
--- CREATE DATABASE wyz6xr1ilvrqvnsb;
+CREATE DATABASE wyz6xr1ilvrqvnsb;
 
--- USE DATABASE wyz6xr1ilvrqvnsb;
-DELETE DATABASE IF EXISTS burgers_db;
+USE DATABASE wyz6xr1ilvrqvnsb;
 
-CREATE DATABASE burgers_db;
-
-USE burgers_db;
 
 CREATE TABLE burgers(
     id INT NOT NULL AUTO_INCREMENT,
