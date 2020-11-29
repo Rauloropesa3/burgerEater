@@ -1,34 +1,48 @@
-$(function(){
-    $(".change-devour").on("click", function(event){
-        const id = $(this).data("id");
-        const newDevour = $(this).data("newdevour");
-        const newDevourState = {devoured: newDevour,};
+$(function () {
+  $(".form").on("submit", function (event) {
+    event.preventDefault();
 
-        // put request
-        $.ajax("/api/burgers/" + id, {
-            type: "PUT",
-            data: newDevourState,
-        }).then(function(){
-            console.log("Burger has been devoured");
-            location.reload();
-        });
+    var newBurger = {
+      burger_name: $("#burger").val().trim(),
+      devoured: false,
+    };
+
+    // post request
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger,
+    }).then(() => {
+      console.log("A burger was created");
+      location.reload();
     });
+  });
+  $(".devouredOrNot").on("click", function (event) {
+    var id = $(this).data("id");
+    var devoured = $(this).data("devoured");
 
-    $(".create-form").on("submit", function(event){
-        event.preventDefault();
+    var newDevouredState = {
+      devoured: devoured,
+    };
 
-        const newBurger = {
-            burger_name: $("#burger").val().trim(),
-            devoured: 0,
-        };
-
-        // post request
-        $.ajax("/api/burgers", {
-            type: "POST",
-            data: newBurger,
-        }).then(function() {
-            console.log("A burger was created");
-            location.reload();
-        });
+    // put request
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: newDevouredState,
+    }).then(() => {
+      console.log("Burger has been devoured");
+      location.reload();
     });
+  });
+  $(".delete_burger").on("click", function (event) {
+    var id = $(this).data("id");
+
+    //send delete request
+    $.ajax("/api/burgers/" + id, {
+      type: "DELETE",
+    }).then(() => {
+      console.log("deleted burger", id);
+      // Reload the page to get the updated list
+      location.reload();
+    });
+  });
 });

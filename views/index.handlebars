@@ -1,28 +1,45 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col text-center">
+        <div class="col text-center" style= color:aliceblue>
             <h1>Da Burgers!</h1>
-            <div>
-                <img src="../assets/img/daBurger.png" class="image" alt="Image of Burger">
-            </div>
         </div>
     </div>
 
-
     <div class="row">
-        <div class="col-6">
+        <div class="col-4">
 
-            <h2 class="text-center">Burgers that need to be eaten!</h2>
+            <h2 class="text-center-left" style= "color:aliceblue">Eat<br>these<br>Burgers!</h2>
             <ul>
+              <hr color= aliceblue 2px>
                 {{#each burgers}}
                     {{#unless devoured}}
-                        {{> burger-block devoured = true}}
+                        {{>burger-block devoured = true}}
                     {{/unless}}
                 {{/each}}
             </ul>
         </div>
-        <div class="col-6">
-            <h2 class="text-center">DEVOURED!!!</h2>
+         <div class="col-4">
+            <form class="form">
+                <div>
+                    <input type="text" id="burger" name="burger_name">
+                </div>
+
+                <br>
+
+                <button  class="btn btn-primary btn-lg" type="submit" >Submit</button>
+
+                <br>
+                <br>
+
+                <div>
+                    <p style="color:aliceblue">Enter a burger you want to eat Click the "Submit" button</p>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-4-left" >
+            <h2 class="text-right" style= "color:aliceblue">DEVOURED!!!</h2>
+            <hr color= aliceblue 2px>
             <ul>
                 {{#each burgers}}
                     {{#if devoured}}
@@ -30,27 +47,6 @@
                     {{/if}}
                 {{/each}}
             </ul>
-        </div>
-    </div>
-
-    <div class="row text-center">
-        <div class="col-12">
-            <form class="form">
-                <div>
-                    <input type="text-area" id="burger" name="burger" placeholder="Burgers">
-                </div>
-
-                <br>
-
-                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-
-                <br>
-                <br>
-
-                <div>
-                    <p>Enter a burger you want to eat Click the "Submit" button</p>
-                </div>
-            </form>
         </div>
     </div>
 </div>

@@ -1,66 +1,42 @@
 // imported connection
-const connection = require('./connection.js');
+const connection = require("./connection.js");
 
-function printQuestionMarks(num){
-    let arr =[];
-    for(let i = 0; i < num; i++){
-        arr.push("?");
-    }
-    return arr.toString();
-}
-function objToSql(object){
-     let arr = [];
-     for (const key in object){
-         let value = object[key];
-         if(object.hasOwnProperty.call(object, key)){
-             if(typeof value === "string" && value.indexOf("")>=0){
-                 value = "'" + value +"'";
-             }
-             arr.push(key+ "=" + value);
-         }
-     }
-    return arr.toString();
- }
- const orm = {
-    all: function (tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
-        connection.query(queryString, function(err, res) {
-            if (err) throw err;
-            cb(res);
-        });
-    },
-    create: function (table, cols, vals, cb) {
-        var queryString = "INSERT INTO " + table;
-        
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
+const orm = {
+  selectAll: function (tableName, cb) {
+    var query = `SELECT * FROM ${tableName}`;
+    connection.query(query, function (err, res) {
+      if (err) throw err;
+      cb(res);
+    });
+  },
+  insertOne: function (tableName, column, value, cb) {
+    var query = `INSERT INTO ${tableName}(${column})VALUES("${value}")`;
 
-        console.log(queryString);
+    console.log(query);
 
-        connection.query(queryString, vals, function (err, res) {
-            if (err) throw err;
-            cb(res);
-        });
-    },
-    update: function (table, objColVals, condition, cb) {
-        var queryString = "UPDATE " + table;
+    connection.query(query, value, function (err, res) {
+      if (err) throw err;
+      cb(res);
+    });
+  },
+  updateOne: function (tableName, column, condition, value, cb) {
+    var query = `UPDATE ${tableName} SET ${column} = ${condition} WHERE id= ${value}`;
 
-        queryString += " SET ";
-        queryString += objToSql(objColVals);
-        queryString += " WHERE ";
-        queryString += condition;
+    console.log(query);
 
-        console.log(queryString);
-        connection.query(queryString, function (err, res) {
-            if (err) throw err;
-            cb(res);
-        });
-    }
+    connection.query(query, function (err, res) {
+      if (err) throw err;
+      cb(res);
+    });
+  },
+  delete: function (table, condition, cb) {
+    var query = `DELETE FROM ${table} WHERE ${condition}`;
+
+    connection.query(query, function (err, res) {
+      if (err) throw err;
+      cb(res);
+    });
+  },
 };
 
 module.exports = orm;
-

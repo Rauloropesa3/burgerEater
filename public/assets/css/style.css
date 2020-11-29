@@ -1,1 +1,42 @@
-body{background-color: peachpuff};
+body{
+    background-image: url(https://image.freepik.com/free-photo/juicy-beef-burger-black-background_109285-6289.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+h2.text{
+    color: aliceblue;
+}
+h2{
+    width: 50%;
+    text-align: center;
+}
+.list-group-item{
+    position: relative;
+    width: 50%;
+    background: transparent;
+    padding: 1%;
+    height: 120px;
+    color: aliceblue;
+    
+    
+}
+
+form.form{
+    padding-top: 50%;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+ul{
+  
+    width: 50%;
+    padding-left: 13%;
+    padding-right: 13%;
+    
+}
+.col-4-left{
+    margin-left: 15%;
+}
